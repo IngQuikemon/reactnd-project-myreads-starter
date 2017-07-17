@@ -8,10 +8,11 @@ function BookItem(props){
           <div className="book-cover" style={{
               width: 128,
               height: 188,
-              backgroundImage: `url(${props.bookItem.imageLinks.thumbnail})`
+              backgroundImage: `url(${props.bookItem.imageLinks.smallThumbnail})`
             }}></div>
           <div className="book-shelf-changer">
-            <select>
+            <select value={props.bookItem.shelf}
+              onChange={(event) => props.onUpdateStatus(props.bookItem,event.target.value)}>
               <option value="none" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>

@@ -5,7 +5,7 @@ import BookItem from './BookItem'
 
 class ListBooks extends Component {
   render(){
-    const {books} = this.props
+    const {books,onUpdateStatus} = this.props
     return(
     <div className="list-books">
       <div className="list-books-title">
@@ -18,7 +18,7 @@ class ListBooks extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 {books.filter((book)=>book.shelf === 'currentlyReading' ).map((book) =>(
-                  <BookItem key={book.id} bookItem={book} />
+                  <BookItem key={book.id} bookItem={book}  onUpdateStatus={onUpdateStatus}/>
                 ))}
               </ol>
             </div>
@@ -28,7 +28,7 @@ class ListBooks extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 {books.filter((book)=>book.shelf === 'wantToRead' ).map((book) =>(
-                  <BookItem key={book.id} bookItem={book} />
+                  <BookItem key={book.id} bookItem={book} onUpdateStatus={onUpdateStatus} />
                 ))}
               </ol>
             </div>
@@ -38,7 +38,7 @@ class ListBooks extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 {books.filter((book)=>book.shelf === 'read' ).map((book) =>(
-                  <BookItem key={book.id} bookItem={book} />
+                  <BookItem key={book.id} bookItem={book} onUpdateStatus={onUpdateStatus} />
                 ))}
               </ol>
             </div>
