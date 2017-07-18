@@ -4,11 +4,24 @@ import BookItem from './BookItem'
 
 class SearchBooks extends Component {
 
+  /*
+  * @description Cleans the search data from previous calls when opening the
+  * search option.
+  */
+  componentDidMount(){
+    this.props.onClearSearchData();
+  }
+
+  /*
+  * @description Cleans the query data and send the request to search the api.
+  * @param {string} criteria - contains the text to be searched on the api.
+  */
   updateQuery = (criteria) =>
   {
     criteria = criteria.trim()
-    if(this.props.onSearchBooks)
-      this.props.onSearchBooks(criteria)
+    if(this.props.onSearchBooks){
+      this.props.onSearchBooks(criteria);
+    }
   }
 
   render(){
@@ -18,7 +31,7 @@ class SearchBooks extends Component {
       <div className="search-books">
         <div className="search-books-bar">
           <Link
-            to='/'
+            to="/"
             className='close-search'>Close</Link>
           <div className="search-books-input-wrapper">
             <input
@@ -30,7 +43,9 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {searchedBooks.map((book) =>(
-              <BookItem key={book.id} bookItem={book} onUpdateStatus={onUpdateStatus} />
+              <BookItem key={book.id}
+                bookItem={book}
+                onUpdateStatus={onUpdateStatus} />
             ))}
           </ol>
         </div>
